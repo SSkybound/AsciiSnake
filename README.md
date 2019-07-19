@@ -1,2 +1,4 @@
 # ASCIISnake
-hello
+Controls:
+
+Arrow Keys = Movement
