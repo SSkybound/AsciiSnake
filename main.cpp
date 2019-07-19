@@ -29,6 +29,7 @@ class Snake
  void RemovePart();
  void DeleteBody();
 } snake;
+
 void StartMenu();
 void Init();
 void KeySwitch();
@@ -159,16 +160,17 @@ void GameOver(){
     system("cls");
     cout<<"Your score is... "<< snake.size << "!"<<"\nWant to play again?\n";
     system("pause");
+    cout << "Press the ESC Key to quit." <<endl;
     StartMenu();
 }
 void KeySwitch(){
     char c =_getch();
     switch(c){
         case 27: stop=1; snake.DeleteBody(); break; //ESC
-        case 72: if(snake.vx) {snake.vx=0;  snake.vy=-1;} break; //up
-        case 80: if(snake.vx) {snake.vx=0;  snake.vy=1;} break; //down
-        case 75: if(snake.vy) {snake.vx=-1;  snake.vy=0;} break; //left
-        case 77: if(snake.vy) {snake.vx=1;  snake.vy=0;} break; //right
+        case 72: if(snake.vx) {snake.vx=0;  snake.vy=-1;} break; // UP ARROW KEY
+        case 80: if(snake.vx) {snake.vx=0;  snake.vy=1;} break; // DOWN ARROW KEY
+        case 75: if(snake.vy) {snake.vx=-1;  snake.vy=0;} break; // LEFT ARROW KEY
+        case 77: if(snake.vy) {snake.vx=1;  snake.vy=0;} break; // RIGHT ARROW KEY
         default: break;
     }
 }
