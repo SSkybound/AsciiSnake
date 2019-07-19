@@ -9,7 +9,7 @@ bool stop=0;
 bool lite=1;
 bool food=0;
 bool boostspeed=1;
-int speed=3;
+int speed=3; // This thing can be moddable.
 int framecount=0;
 int food_x,food_y;
 const int m=10,n=20;
