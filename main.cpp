@@ -9,24 +9,25 @@ bool stop=0;
 bool lite=1;
 bool food=0;
 bool boostspeed=1;
-int speed=3; // This thing can be moddable.
+int speed=3;
 int framecount=0;
 int food_x,food_y;
 const int m=10,n=20;
 char field[m][n];
 
-class Snake{
-    public:
-    struct Part{
-        int x,y;
-        Part* next;
-    };
-    Part*body,*tale;
-    int x,y,vx,vy,size,speed;
-    void MoveSnake();
-    void AddPart();
-    void RemovePart();
-    void DeleteBody();
+class Snake
+{
+ public:
+ struct Part;
+ int x,y;
+ Part* next;
+ };
+ Part*body,*tale;
+ int x,y,vx,vy,size,speed;
+ void MoveSnake();
+ void AddPart();
+ void RemovePart();
+ void DeleteBody();
 } snake;
 void StartMenu();
 void Init();
@@ -36,7 +37,8 @@ void GenerateFood();
 void GenerateField();
 void DrawField();
 
-int main(){
+int main()
+{
     StartMenu();
     while(!stop){
         for(int i=0;i<2;++i){
@@ -73,7 +75,7 @@ void Snake::MoveSnake(){
             snake.vx=0;
             snake.y=m-1-snake.y;
         }
-    }    //lite mode
+    }    //Easy mode
     if(snake.x==food_x&&snake.y==food_y){
         food=0;
         ++snake.size;
@@ -216,4 +218,5 @@ void DrawField(){
         }
         cout <<endl;
     }
+    return 0;
 }
