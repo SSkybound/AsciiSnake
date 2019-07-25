@@ -135,7 +135,7 @@ void StartMenu(){
     cout << "            ASCIISnake" <<endl;
     cout << "           Moddable Ver.\n";
     cout << "-------------------------------------" <<endl;
-    cout << "1 = Easy mode." <<endl << "2 = Classic mode." <<endl << "Press the Esc Key to exit.";
+    cout << "1 = Easy mode." <<endl << "2 = Classic mode." <<endl << "Esc = Exit.";
     char c=0;
     while(c!=27){
         c=_getch();
@@ -200,7 +200,7 @@ void GenerateField(){
                 field[i][j]=' ';
             }
             if(food)
-                field[food_y][food_x]='$';
+                field[food_y][food_x]='o';
         }
     }
     Snake::Part* bodycheck=snake.body;
