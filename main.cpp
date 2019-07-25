@@ -135,7 +135,7 @@ void StartMenu(){
     cout << "            ASCIISnake" <<endl;
     cout << "           Moddable Ver.\n";
     cout << "-------------------------------------" <<endl;
-    cout << "       Press 1 for easy mode." <<endl << "       Press 2 for classic mode." <<endl << "       Press the Esc Key to exit.";
+    cout << "1 = Easy mode." <<endl << "2 = Classic mode." <<endl << "Press the Esc Key to exit.";
     char c=0;
     while(c!=27){
         c=_getch();
