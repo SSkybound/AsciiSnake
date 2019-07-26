@@ -1,4 +1,4 @@
-// HELLO FELLOW HUMANS //
+// Copyright &copy French Toast //
 #include <iostream>
 #include <windows.h>
 #include <time.h>
@@ -9,28 +9,27 @@ bool stop=0;
 bool lite=1;
 bool food=0;
 bool boostspeed=1;
-int speed=3;
+int speed=3; // Speed can be changed
 int framecount=0;
 int food_x,food_y;
 const int m=10,n=20;
 char field[m][n];
 
-class Snake
-{
- public:
- struct Part;
- int x,y;
- Part* next;
- };
- Part*body,*tale;
- int x,y,vx,vy,size,speed;
- void MoveSnake();
- void AddPart();
- void RemovePart();
- void DeleteBody();
+class Snake{
+    public:
+    struct Part{
+        int x,y;
+        Part* next;
+    };
+    Part*body,*tail;
+    int x,y,vx,vy,size,speed;
+    void MoveSnake();
+    void AddPart();
+    void RemovePart();
+    void DeleteBody();
 } snake;
-
 void StartMenu();
+void Loading();
 void Init();
 void KeySwitch();
 void GameOver();
@@ -38,8 +37,8 @@ void GenerateFood();
 void GenerateField();
 void DrawField();
 
-int main()
-{
+int main(){
+    Loading();
     StartMenu();
     while(!stop){
         for(int i=0;i<2;++i){
@@ -76,7 +75,7 @@ void Snake::MoveSnake(){
             snake.vx=0;
             snake.y=m-1-snake.y;
         }
-    }    //Easy mode
+    }    // Easy mode
     if(snake.x==food_x&&snake.y==food_y){
         food=0;
         ++snake.size;
@@ -95,11 +94,11 @@ void Snake::AddPart(){
     Part* NewPart = new Part;
     if(!body){
         body=NewPart;
-        tale=NewPart;
+        tail=NewPart;
     }
     else{
-        tale->next=NewPart;
-        tale=NewPart;
+        tail->next=NewPart;
+        tail=NewPart;
     }
     NewPart->next=0;
     NewPart->x=snake.x;
@@ -125,17 +124,19 @@ void Init(){
     snake.vy=0;
     snake.size=0;
     snake.body=0;
-    snake.tale=0;
+    snake.tail=0;
     snake.speed=speed;
     GenerateField();
 }
 void StartMenu(){
     system("cls");
-    cout << "        French Toast presents" <<endl;
-    cout << "            ASCIISnake" <<endl;
-    cout << "           Moddable Ver.\n";
-    cout << "-------------------------------------" <<endl;
-    cout << "1 = Easy mode." <<endl << "2 = Classic mode." <<endl << "Esc = Exit.";
+    cout << "                             French Toast presents" <<endl;
+    cout << "                                 ASCIISnake" <<endl;
+    cout << "                                Moddable Ver.\n";
+    cout << "--------------------------------------------------------------------------------" <<endl;
+    cout <<endl;
+    cout << "Choose your difficulty!" <<endl;
+    cout << "1 = Easy" <<endl << "2 = Classic" <<endl << "Esc Key = Exit" <<endl;
     char c=0;
     while(c!=27){
         c=_getch();
@@ -153,24 +154,37 @@ void StartMenu(){
                 break;
         }
     }
+
+    Init();
+}
+
+void Loading(){
+    system("cls");
+    cout << "Version 1.2.3" <<endl;
+    cout << "Made by French Toast" <<endl;
+    cout << "--------------------------" <<endl;
+    cout << "Loading..." <<endl;
+    cout << "Done!" <<endl;
+    cout << "--------------------------" <<endl;
+    system("pause");
     Init();
 }
 void GameOver(){
     snake.DeleteBody();
     system("cls");
-    cout<<"Your score is... "<< snake.size << "!"<<"\nWant to play again?\n";
+    cout<< "Your score is... "<< snake.size << "! "<<"Want to play again?\n";
+    cout << "-----------------------------------------------" <<endl;
     system("pause");
-    cout << "Press the ESC Key to quit." <<endl;
     StartMenu();
 }
 void KeySwitch(){
     char c =_getch();
     switch(c){
         case 27: stop=1; snake.DeleteBody(); break; //ESC
-        case 72: if(snake.vx) {snake.vx=0;  snake.vy=-1;} break; // UP ARROW KEY
-        case 80: if(snake.vx) {snake.vx=0;  snake.vy=1;} break; // DOWN ARROW KEY
-        case 75: if(snake.vy) {snake.vx=-1;  snake.vy=0;} break; // LEFT ARROW KEY
-        case 77: if(snake.vy) {snake.vx=1;  snake.vy=0;} break; // RIGHT ARROW KEY
+        case 72: if(snake.vx) {snake.vx=0;  snake.vy=-1;} break; //up
+        case 80: if(snake.vx) {snake.vx=0;  snake.vy=1;} break; //down
+        case 75: if(snake.vy) {snake.vx=-1;  snake.vy=0;} break; //left
+        case 77: if(snake.vy) {snake.vx=1;  snake.vy=0;} break; //right
         default: break;
     }
 }
@@ -220,5 +234,5 @@ void DrawField(){
         }
         cout <<endl;
     }
-    return 0;
+
 }
