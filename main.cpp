@@ -134,7 +134,6 @@ void StartMenu(){
     cout << "                                 ASCIISnake" <<endl;
     cout << "                                Moddable Ver.\n";
     cout << "--------------------------------------------------------------------------------" <<endl;
-    cout <<endl;
     cout << "Choose your difficulty!" <<endl;
     cout << "1 = Easy" <<endl << "2 = Classic" <<endl << "Esc Key = Exit" <<endl;
     char c=0;
