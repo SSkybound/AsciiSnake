@@ -15,9 +15,11 @@ int food_x,food_y;
 const int m=10,n=20;
 char field[m][n];
 
-class Snake{
+class Snake
+{
     public:
-    struct Part{
+    struct Part
+    {
         int x,y;
         Part* next;
     };
@@ -37,10 +39,12 @@ void GenerateFood();
 void GenerateField();
 void DrawField();
 
-int main(){
+int main()
+{
     Loading();
     StartMenu();
-    while(!stop){
+    while(!stop)
+    {
         for(int i=0;i<2;++i){
             if(kbhit()==true)
                 KeySwitch();
@@ -52,45 +56,55 @@ int main(){
     }
 }
 
-void Snake::MoveSnake(){
+void Snake::MoveSnake()
+{
     Part* bodycheck=body;
-    while(bodycheck){
-        if(bodycheck->x==snake.x&&bodycheck->y==snake.y){
+    while(bodycheck)
+    {
+        if(bodycheck->x==snake.x&&bodycheck->y==snake.y)
+        {
             GameOver();
             break;
         }
         bodycheck=bodycheck->next;
     }    // Check collision
-    if(!lite&&(snake.x==0 || snake.x==n-1 ||  snake.y==0 || snake.y==m-1)){
+    if(!lite&&(snake.x==0 || snake.x==n-1 ||  snake.y==0 || snake.y==m-1))
+    {
         GameOver();
     }    // Hard mode
     else{
-        if(snake.x==0 || snake.x==n-1){
+        if(snake.x==0 || snake.x==n-1)
+        {
             snake.vx=snake.x==0? -1 : 1;
             snake.vy=0;
             snake.x=n-1-snake.x;
         }
-        if(snake.y==0 || snake.y==m-1){
+        
+        if(snake.y==0 || snake.y==m-1)
+        {
             snake.vy=snake.y==0? -1 : 1;
             snake.vx=0;
             snake.y=m-1-snake.y;
         }
     }    // Easy mode
-    if(snake.x==food_x&&snake.y==food_y){
+    if(snake.x==food_x&&snake.y==food_y)
+    {
         food=0;
         ++snake.size;
         AddPart();
         if(boostspeed)
             ++snake.speed;
     }
-    else if(body){
+    else if(body)
+    {
         AddPart();
         RemovePart();
     }
     snake.x+=snake.vx;
     snake.y+=snake.vy;
 }
-void Snake::AddPart(){
+void Snake::AddPart()
+{
     Part* NewPart = new Part;
     if(!body){
         body=NewPart;
@@ -104,12 +118,15 @@ void Snake::AddPart(){
     NewPart->x=snake.x;
     NewPart->y=snake.y;
 }
-void Snake::RemovePart(){
+
+void Snake::RemovePart()
+{
     Part* Item=body;
     body=Item->next;
     delete Item;
 }
-void Snake::DeleteBody(){
+void Snake::DeleteBody()
+{
     Part* del = body;
     while(del){
         body=del->next;
@@ -117,7 +134,8 @@ void Snake::DeleteBody(){
         del=body;
     }
 }
-void Init(){
+void Init()
+{
     snake.x=1;
     snake.y=1;
     snake.vx=1;
@@ -139,9 +157,11 @@ void StartMenu(){
     cout << "1 = Easy - Disabled wall, Infinite land" <<endl << "2 = Classic - Has walls enabled" <<endl << "Esc Key = Exit the game" <<endl;
     cout <<endl;
     char c=0;
-    while(c!=27){
+    while(c!=27)
+    {
         c=_getch();
-        switch(c){
+        switch(c)
+        {
             case '1':
                 lite=1;
                 c=27;
@@ -190,26 +210,33 @@ void KeySwitch(){
         default: break;
     }
 }
-void GenerateFood(){
+void GenerateFood()
+{
     bool error=1;
-    while(error){
+    while(error)
+    {
         srand(time(NULL));
         food_x=1+rand()%(n-1);
         food_y=1+rand()%(m-1);
-        if(field[food_y][food_x]==' ') {
+        if(field[food_y][food_x]==' ') 
+        {
             error=0;
         }
     }
     food=1;
 }
-void GenerateField(){
+void GenerateField()
+{
     snake.MoveSnake();
-    for(int i=0;i<m;++i){
-        for(int j=0;j<n;++j){
+    for(int i=0;i<m;++i)
+    {
+        for(int j=0;j<n;++j)
+        {
             if(i==0 || i==m-1 || j==0 ||  j==n-1){
                 field[i][j]='#';
             }
-            else if(i==snake.y && j==snake.x){
+            else if(i==snake.y && j==snake.x)
+            {
                 field[i][j]='@';
             }
             else{
@@ -220,21 +247,26 @@ void GenerateField(){
         }
     }
     Snake::Part* bodycheck=snake.body;
-    while(bodycheck){
+    while(bodycheck)
+    {
         field[bodycheck->y][bodycheck->x]='*';
         bodycheck=bodycheck->next;
     }
-    if(!food){
+    if(!food)
+    {
         GenerateFood();
     }
 }
 void DrawField(){
     system("cls");
-    for(int i=0;i<m;++i){
-        for(int j=0;j<n;++j){
+    for(int i=0;i<m;++i)
+    {
+        for(int j=0;j<n;++j)
+        {
             cout<<field[i][j];
         }
         cout <<endl;
     }
-
+ }
+return 0;
 }
