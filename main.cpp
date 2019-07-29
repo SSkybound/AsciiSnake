@@ -1,4 +1,4 @@
-// Copyright &copy French Toast //
+// Copyright &copy FrenchToast //
 #include <iostream>
 #include <windows.h>
 #include <time.h>
@@ -130,12 +130,14 @@ void Init(){
 }
 void StartMenu(){
     system("cls");
-    cout << "                             French Toast presents" <<endl;
-    cout << "                                 ASCIISnake" <<endl;
-    cout << "                                Moddable Ver.\n";
-    cout << "--------------------------------------------------------------------------------" <<endl;
+    cout << "                              FrenchToast presents" <<endl;
+    cout << "                                 |ASCII-----|" <<endl;
+    cout << "                                 |-----SNAKE|" <<endl;
+    cout << "                            Copyright 2019 FrenchToast" <<endl;
+    cout << "-------------------------------------------------------------------------------" <<endl;
     cout << "Choose your difficulty!" <<endl;
-    cout << "1 = Easy" <<endl << "2 = Classic" <<endl << "Esc Key = Exit" <<endl;
+    cout << "1 = Easy - Disabled wall, Infinite land" <<endl << "2 = Classic - Has walls enabled" <<endl << "Esc Key = Exit the game" <<endl;
+    cout <<endl;
     char c=0;
     while(c!=27){
         c=_getch();
@@ -148,7 +150,7 @@ void StartMenu(){
                 lite=0;
                 c=27;
                 break;
-            case 27: //ESC
+            case 27: // ESC Key
                 stop=1;
                 break;
         }
@@ -159,10 +161,11 @@ void StartMenu(){
 
 void Loading(){
     system("cls");
+    system("color 0a");
     cout << "Version 1.2.3" <<endl;
-    cout << "Made by French Toast" <<endl;
+    cout << "Made by FrenchToast" <<endl;
     cout << "--------------------------" <<endl;
-    cout << "Loading..." <<endl;
+    cout << "Loading..." <<endl; // Takes about a whopping 0.01 ms to boot because the file is like 2 KB so it's small.
     cout << "Done!" <<endl;
     cout << "--------------------------" <<endl;
     system("pause");
@@ -179,11 +182,11 @@ void GameOver(){
 void KeySwitch(){
     char c =_getch();
     switch(c){
-        case 27: stop=1; snake.DeleteBody(); break; //ESC
-        case 72: if(snake.vx) {snake.vx=0;  snake.vy=-1;} break; //up
-        case 80: if(snake.vx) {snake.vx=0;  snake.vy=1;} break; //down
-        case 75: if(snake.vy) {snake.vx=-1;  snake.vy=0;} break; //left
-        case 77: if(snake.vy) {snake.vx=1;  snake.vy=0;} break; //right
+        case 27: stop=1; snake.DeleteBody(); break; // ESCAPE Key
+        case 72: if(snake.vx) {snake.vx=0;  snake.vy=-1;} break; // Up Arrow Key
+        case 80: if(snake.vx) {snake.vx=0;  snake.vy=1;} break; // Down Arrow Key
+        case 75: if(snake.vy) {snake.vx=-1;  snake.vy=0;} break; // Left Arrow Key
+        case 77: if(snake.vy) {snake.vx=1;  snake.vy=0;} break; // Right Arrow Key
         default: break;
     }
 }
