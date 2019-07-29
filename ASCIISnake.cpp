@@ -18,7 +18,8 @@ char field[m][n];
 
 class Snake{
     public:
-    struct Part{
+    struct Part
+    {
         int x,y;
         Part* next;
     };
@@ -42,7 +43,8 @@ int main()
 {
     Loading();
     StartMenu();
-    while(!stop){
+    while(!stop)
+    {
         for(int i=0;i<2;++i)
         {
             if(kbhit()==true)
