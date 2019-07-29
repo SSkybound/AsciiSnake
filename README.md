@@ -1,4 +1,6 @@
 # ASCIISnake
-Controls:
+Made for Windows OS only.
 
-Arrow Keys = Movement
+Controls: WASD = Movement
+
+A game I designed to look like an old Nokia game. Does anyone remember Nokia?
