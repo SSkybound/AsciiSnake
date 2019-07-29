@@ -1,25 +1,24 @@
 // Copyright &copy FrenchToast //
+
 #include <iostream>
 #include <windows.h>
 #include <time.h>
 #include <conio.h>
 using namespace std;
 
-bool stop=0;
-bool lite=1;
-bool food=0;
-bool boostspeed=1;
-int speed=3; // Speed can be changed
-int framecount=0;
+bool stop = 0;
+bool lite = 1;
+bool food = 0;
+bool boostspeed = 1;
+int speed = 3; // Speed can be changed
+int framecount = 0;
 int food_x,food_y;
 const int m=10,n=20;
 char field[m][n];
 
-class Snake
-{
+class Snake{
     public:
-    struct Part
-    {
+    struct Part{
         int x,y;
         Part* next;
     };
@@ -43,9 +42,9 @@ int main()
 {
     Loading();
     StartMenu();
-    while(!stop)
-    {
-        for(int i=0;i<2;++i){
+    while(!stop){
+        for(int i=0;i<2;++i)
+        {
             if(kbhit()==true)
                 KeySwitch();
             Sleep(100/snake.speed);
@@ -67,11 +66,15 @@ void Snake::MoveSnake()
             break;
         }
         bodycheck=bodycheck->next;
-    }    // Check collision
+    }   
+    
+    // Check collision
     if(!lite&&(snake.x==0 || snake.x==n-1 ||  snake.y==0 || snake.y==m-1))
     {
         GameOver();
-    }    // Hard mode
+    }   
+    
+    // Hard mode
     else{
         if(snake.x==0 || snake.x==n-1)
         {
@@ -79,14 +82,15 @@ void Snake::MoveSnake()
             snake.vy=0;
             snake.x=n-1-snake.x;
         }
-        
         if(snake.y==0 || snake.y==m-1)
         {
             snake.vy=snake.y==0? -1 : 1;
             snake.vx=0;
             snake.y=m-1-snake.y;
         }
-    }    // Easy mode
+    }
+    
+    // Easy mode
     if(snake.x==food_x&&snake.y==food_y)
     {
         food=0;
@@ -103,14 +107,17 @@ void Snake::MoveSnake()
     snake.x+=snake.vx;
     snake.y+=snake.vy;
 }
+
 void Snake::AddPart()
 {
     Part* NewPart = new Part;
-    if(!body){
+    if(!body)
+    {
         body=NewPart;
         tail=NewPart;
     }
-    else{
+    else
+    {
         tail->next=NewPart;
         tail=NewPart;
     }
@@ -125,30 +132,33 @@ void Snake::RemovePart()
     body=Item->next;
     delete Item;
 }
+
 void Snake::DeleteBody()
 {
     Part* del = body;
-    while(del){
+    while(del)
+    {
         body=del->next;
         delete del;
         del=body;
     }
 }
+
 void Init()
 {
-    snake.x=1;
-    snake.y=1;
-    snake.vx=1;
-    snake.vy=0;
-    snake.size=0;
-    snake.body=0;
-    snake.tail=0;
+    snake.x = 1;
+    snake.y = 1;
+    snake.vx = 1;
+    snake.vy = 0;
+    snake.size = 0;
+    snake.body = 0;
+    snake.tail = 0;
     snake.speed=speed;
     GenerateField();
 }
 
-/** I made a really kewl logo for this game, hope you like it! **/
-void StartMenu(){
+void StartMenu()
+{
     system("cls");
     cout << "                              FrenchToast presents" <<endl;
     cout << "                                 |ASCII-----|" <<endl;
@@ -181,9 +191,10 @@ void StartMenu(){
     Init();
 }
 
-void Loading(){
+void Loading()
+{
     system("cls");
-    system("color 0a"); /** // 0a is light green in Batch. // **/
+    system("color 0e");
     cout << "Version 1.2.3" <<endl;
     cout << "Made by FrenchToast" <<endl;
     cout << "--------------------------" <<endl;
@@ -193,25 +204,31 @@ void Loading(){
     system("pause");
     Init();
 }
-void GameOver(){
+
+void GameOver()
+{
     snake.DeleteBody();
-    system("cls"); // The highest score is 12. :( //
-    cout << "Your score is... "<< snake.size << "! "<<"Want to play again?\n";
+    system("cls");
+    cout<< "Your score is... "<< snake.size << "! "<<"Want to play again?\n";
     cout << "-----------------------------------------------" <<endl;
     system("pause");
     StartMenu();
 }
-void KeySwitch(){
+
+void KeySwitch()
+{
     char c =_getch();
-    switch(c){
+    switch(c)
+    {
         case 27: stop=1; snake.DeleteBody(); break; // ESCAPE Key
-        case 72: if(snake.vx) {snake.vx=0;  snake.vy=-1;} break; // Up Arrow Key
-        case 80: if(snake.vx) {snake.vx=0;  snake.vy=1;} break; // Down Arrow Key
-        case 75: if(snake.vy) {snake.vx=-1;  snake.vy=0;} break; // Left Arrow Key
-        case 77: if(snake.vy) {snake.vx=1;  snake.vy=0;} break; // Right Arrow Key
+        case 'w': if(snake.vx) {snake.vx=0;  snake.vy=-1;} break; // W Key //
+        case 's': if(snake.vx) {snake.vx=0;  snake.vy=1;} break; // S Key //
+        case 'a': if(snake.vy) {snake.vx=-1;  snake.vy=0;} break; // A Key //
+        case 'd': if(snake.vy) {snake.vx=1;  snake.vy=0;} break; // D Key //
         default: break;
     }
 }
+
 void GenerateFood()
 {
     bool error=1;
@@ -220,7 +237,7 @@ void GenerateFood()
         srand(time(NULL));
         food_x=1+rand()%(n-1);
         food_y=1+rand()%(m-1);
-        if(field[food_y][food_x]==' ') 
+        if(field[food_y][food_x]==' ')
         {
             error=0;
         }
@@ -234,7 +251,8 @@ void GenerateField()
     {
         for(int j=0;j<n;++j)
         {
-            if(i==0 || i==m-1 || j==0 ||  j==n-1){
+            if(i==0 || i==m-1 || j==0 ||  j==n-1)
+            {
                 field[i][j]='#';
             }
             else if(i==snake.y && j==snake.x)
@@ -259,7 +277,8 @@ void GenerateField()
         GenerateFood();
     }
 }
-void DrawField(){
+void DrawField()
+{
     system("cls");
     for(int i=0;i<m;++i)
     {
@@ -269,6 +288,7 @@ void DrawField(){
         }
         cout <<endl;
     }
-  }
+
+ }
  return 0;
 }
