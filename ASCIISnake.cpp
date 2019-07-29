@@ -146,6 +146,8 @@ void Init()
     snake.speed=speed;
     GenerateField();
 }
+
+/** I made a really kewl logo for this game, hope you like it! **/
 void StartMenu(){
     system("cls");
     cout << "                              FrenchToast presents" <<endl;
@@ -181,7 +183,7 @@ void StartMenu(){
 
 void Loading(){
     system("cls");
-    system("color 0a");
+    system("color 0a"); /** // 0a is light green in Batch. // **/
     cout << "Version 1.2.3" <<endl;
     cout << "Made by FrenchToast" <<endl;
     cout << "--------------------------" <<endl;
@@ -193,8 +195,8 @@ void Loading(){
 }
 void GameOver(){
     snake.DeleteBody();
-    system("cls");
-    cout<< "Your score is... "<< snake.size << "! "<<"Want to play again?\n";
+    system("cls"); // The highest score is 12. :( //
+    cout << "Your score is... "<< snake.size << "! "<<"Want to play again?\n";
     cout << "-----------------------------------------------" <<endl;
     system("pause");
     StartMenu();
@@ -267,6 +269,6 @@ void DrawField(){
         }
         cout <<endl;
     }
- }
-return 0;
+  }
+ return 0;
 }
