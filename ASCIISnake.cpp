@@ -265,13 +265,13 @@ void GenerateField()
                 field[i][j]=' ';
             }
             if(food)
-                field[food_y][food_x]='o';
+                field[food_y][food_x]='*';
         }
     }
     Snake::Part* bodycheck=snake.body;
     while(bodycheck)
     {
-        field[bodycheck->y][bodycheck->x]='*';
+        field[bodycheck->y][bodycheck->x]='o';
         bodycheck=bodycheck->next;
     }
     if(!food)
