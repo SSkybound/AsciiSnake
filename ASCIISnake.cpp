@@ -200,7 +200,7 @@ void Loading()
     cout << "Version 1.2.3" <<endl;
     cout << "Made by FrenchToast" <<endl;
     cout << "--------------------------" <<endl;
-    cout << "Loading..." <<endl; // Takes about a whopping 0.01 ms to boot because the file is like 2 KB so it's small.
+    cout << "Loading..." <<endl; // Takes about a whopping 0.01 ms to boot because the file is like 6 KB so it's small.
     cout << "Done!" <<endl;
     cout << "--------------------------" <<endl;
     system("pause");
@@ -255,17 +255,17 @@ void GenerateField()
         {
             if(i==0 || i==m-1 || j==0 ||  j==n-1)
             {
-                field[i][j]='#';
+                field[i][j]='#'; /** Wall sprite **/
             }
             else if(i==snake.y && j==snake.x)
             {
-                field[i][j]='@';
+                field[i][j]='@'; // Snake head
             }
             else{
-                field[i][j]=' ';
+                field[i][j]=' '; // Empty spaces
             }
             if(food)
-                field[food_y][food_x]='*';
+                field[food_y][food_x]='*'; // Food sprite
         }
     }
     Snake::Part* bodycheck=snake.body;
