@@ -211,7 +211,7 @@ void GameOver()
 {
     snake.DeleteBody();
     system("cls");
-    cout<< "Your score is... "<< snake.size << "! "<<"Want to play again?\n";
+    cout<< "Your score is... "<< snake.size << "! " << "Try again to beat your score!\n";
     cout << "-----------------------------------------------" <<endl;
     system("pause");
     StartMenu();
