@@ -271,7 +271,7 @@ void GenerateField()
     Snake::Part* bodycheck=snake.body;
     while(bodycheck)
     {
-        field[bodycheck->y][bodycheck->x]='O';
+        field[bodycheck->y][bodycheck->x]='O'; // Snake body/tail
         bodycheck=bodycheck->next;
     }
     if(!food)
