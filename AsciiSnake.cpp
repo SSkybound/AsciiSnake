@@ -162,10 +162,10 @@ void Init()
 void StartMenu()
 {
     system("cls");
-    cout << "                              FrenchToast presents" <<endl;
+    cout << "                              FrenchToast presents\n" <<endl;
     cout << "                                 |ASCII-----|" <<endl;
-    cout << "                                 |-----SNAKE|" <<endl;
-    cout << "                            Copyright 2019 FrenchToast" <<endl;
+    cout << "                                 |-----SNAKE|\n" <<endl;
+    cout << "                           Copyright 2019 FrenchToast" <<endl;
     cout << "-------------------------------------------------------------------------------" <<endl;
     cout << "Choose your difficulty!" <<endl;
     cout << "1 = Easy - Disabled wall, Infinite land" <<endl << "2 = Classic - Has walls enabled" <<endl << "Esc Key = Exit the game" <<endl;
@@ -198,7 +198,7 @@ void Loading()
     system("cls");
     system("color 0e");
     cout << "Version 1.2.3" <<endl;
-    cout << "Made by FrenchToast" <<endl;
+    cout << "Originally made by FrenchToast" <<endl;
     cout << "--------------------------" <<endl;
     cout << "Loading..." <<endl; // Takes about a whopping 0.01 ms to boot because the file is like 6 KB so it's small.
     cout << "Done!" <<endl;
@@ -291,6 +291,4 @@ void DrawField()
         cout <<endl;
     }
 
- }
- return 0;
 }
