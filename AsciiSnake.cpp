@@ -165,7 +165,7 @@ void StartMenu()
     cout << "                             FrenchToast presents\n" <<endl;
     cout << "                                 |ASCII-----|" <<endl;
     cout << "                                 |-----SNAKE|\n" <<endl;
-    cout << "                                 Moddable Ver." <<endl;
+    cout << "                              Moddable Version 1.2.3" <<endl;
     cout << "-------------------------------------------------------------------------------" <<endl;
     cout << "Choose your difficulty!" <<endl;
     cout << "1 = Easy - Disabled wall, Infinite land" <<endl << "2 = Classic - Has walls enabled" <<endl << "Esc Key = Exit the game" <<endl;
@@ -211,7 +211,7 @@ void GameOver()
 {
     snake.DeleteBody();
     system("cls");
-    cout<< "Your score is... "<< snake.size << "! " << "Try again to beat your score!\n";
+    cout<< "Your score is... "<< snake.size << "! " << "Try again to beat your score! \n";
     cout << "-----------------------------------------------" <<endl;
     system("pause");
     StartMenu();
