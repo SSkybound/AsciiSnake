@@ -177,11 +177,11 @@ void StartMenu()
         switch(c)
         {
             case '1':
-                lite=1;
+                lite=1; // Easy Mode
                 c=27;
                 break;
             case '2':
-                lite=0;
+                lite=0; // Hard Mode
                 c=27;
                 break;
             case 27: // ESC Key
@@ -222,11 +222,11 @@ void KeySwitch()
     char c =_getch();
     switch(c)
     {
-        case 27: stop=1; snake.DeleteBody(); break; // ESCAPE Key
-        case 'w': if(snake.vx) {snake.vx=0;  snake.vy=-1;} break; // W Key //
-        case 's': if(snake.vx) {snake.vx=0;  snake.vy=1;} break; // S Key //
-        case 'a': if(snake.vy) {snake.vx=-1;  snake.vy=0;} break; // A Key //
-        case 'd': if(snake.vy) {snake.vx=1;  snake.vy=0;} break; // D Key //
+        case 27: stop=1; system("pause"); break; // Pause Button
+        case 'w': if(snake.vx) {snake.vx=0;  snake.vy=-1;} break; // UP //
+        case 's': if(snake.vx) {snake.vx=0;  snake.vy=1;} break; // DOWN //
+        case 'a': if(snake.vy) {snake.vx=-1;  snake.vy=0;} break; // LEFT //
+        case 'd': if(snake.vy) {snake.vx=1;  snake.vy=0;} break; // RIGHT //
         default: break;
     }
 }
