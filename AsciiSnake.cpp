@@ -222,7 +222,7 @@ void KeySwitch()
     char c =_getch();
     switch(c)
     {
-        case 27: stop=1; system("pause"); break; // Pause Button
+        case 27: stop=1; StartMenu(); break; // Pause Button
         case 'w': if(snake.vx) {snake.vx=0;  snake.vy=-1;} break; // UP //
         case 's': if(snake.vx) {snake.vx=0;  snake.vy=1;} break; // DOWN //
         case 'a': if(snake.vy) {snake.vx=-1;  snake.vy=0;} break; // LEFT //
